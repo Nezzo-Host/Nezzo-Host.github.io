@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nezzo Host - Günstiges Minecraft Server Hosting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f0f;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .top-bar {
+            background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+            text-align: center;
+            padding: 8px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        nav {
+            background: rgba(15, 15, 15, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #8b5cf6;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #8b5cf6;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8b5cf6;
+        }
+
+        .btn-panel {
+            background: #8b5cf6;
+            padding: 10px 25px;
+            border-radius: 8px;
+            color: white !important;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            color: #9ca3af;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .trustpilot {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .stars {
+            color: #00b67a;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #8b5cf6;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #8b5cf6;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+            border: 3px solid #8b5cf6;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 5%;
+            background: #0f0f0f;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 60px;
+            font-size: 1.1em;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: linear-gradient(145deg, #1a1a1a, #151515);
+            border-radius: 20px;
+            padding: 40px 30px;
+            border: 2px solid #2a2a2a;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: #8b5cf6;
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .pricing-card.featured {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .plan-name {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-ram {
+            color: #8b5cf6;
+            font-weight: bold;
+        }
+
+        .plan-description {
+            color: #9ca3af;
+            margin-bottom: 25px;
+            font-size: 0.95em;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #2a2a2a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features li i {
+            color: #8b5cf6;
+        }
+
+        .price {
+            margin-bottom: 25px;
+        }
+
+        .price-amount {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #8b5cf6;
+        }
+
+        .price-period {
+            color: #9ca3af;
+            font-size: 0.9em;
+        }
+
+        .price-original {
+            text-decoration: line-through;
+            color: #6b7280;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .btn-order {
+            width: 100%;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-free {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 5%;
+            background: linear-gradient(180deg, #0f0f0f, #1a1a2e);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-box {
+            background: rgba(139, 92, 246, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center;
+        }
+
+        .feature-box i {
+            font-size: 3em;
+            color: #8b5cf6;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 2px solid #8b5cf6;
+        }
+
+        footer p {
+            color: #6b7280;
+        }
+
+        .discord-link {
+            color: #8b5cf6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        🎉 50% Rabatt auf den ersten Monat mit Code: NEZZO50
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">⚡ NEZZO<span>HOST</span></div>
+        <div class="nav-links">
+            <a href="#preise">Preise</a>
+            <a href="#features">Features</a>
+            <a href="#support">Support</a>
+            <a href="http://deine-panel-ip" class="btn-panel" target="_blank">
+                <i class="fas fa-external-link-alt"></i> Panel
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="trustpilot">
+                <span class="stars">★★★★★</span>
+                <span>Excellent auf Trustpilot</span>
+            </div>
+            <h1>Minecraft Server Hosting</h1>
+            <p>Schnelle, anpassbare Server, die in wenigen Minuten einsatzbereit sind. 
+               Starte dein Abenteuer noch heute - ab 0€!</p>
+            <div class="hero-buttons">
+                <a href="#preise" class="btn-primary">
+                    <i class="fas fa-rocket"></i> Server mieten
+                </a>
+                <a href="https://discord.gg/dein-discord" class="btn-secondary" target="_blank">
+                    <i class="fab fa-discord"></i> Discord
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg" 
+                 alt="Minecraft Server">
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="preise">
+        <h2 class="section-title">Wähle deinen Plan</h2>
+        <p class="section-subtitle">Alle Preise monatlich • Keine Einrichtungsgebühr • Jederzeit kündbar</p>
+        
+        <div class="pricing-grid">
+            <!-- FREE Plan -->
+            <div class="pricing-card">
+                <div class="plan-name">
+                    <i class="fas fa-gift" style="color: #10b981;"></i>
+                    <span class="plan-ram">FREE</span>
+                </div>
+                <p class="plan-description">Perfekt zum Testen</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 1 GB RAM</li>
+                    <li><i class="fas fa-check"></i> 5 Spieler Slots</li>
+                    <li><i class="fas fa-check"></i> 5 GB SSD Speicher</li>
+                    <li><i class="fas fa-check"></i> Standard Support</li>
+                    <li><i class="fas fa-check"></i> 99% Uptime</li>
+                </ul>
+                <div class="price">
+                    <span class="price-amount">0,00€</span>
+                    <span class="price-period">/Monat</span>
+                </div>
+                <a href="http://deine-panel-ip/register" class="btn-order btn-free" target="_blank">
+                    <i class="fas fa-download"></i> Kostenlos starten
+                </a>
+            </div>
+
+            <!-- Starter Plan -->
+            <div class="pricing-card">
+                <div class="plan-name">
+                    <i class="fas fa-seedling" style="color: #8b5cf6;"></i>
+                    <span class="plan-ram">STARTER</span>
+                </div>
+                <p class="plan-description">Für kleine Gruppen</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 1,5 GB RAM</li>
+                    <li><i class="fas fa-check"></i> 10 Spieler Slots</li>
+                    <li><i class="fas fa-check"></i> 10 GB SSD Speicher</li>
+                    <li><i class="fas fa-check"></i> Priority Support</li>
+                    <li><i class="fas fa-check"></i> Automatische Backups</li>
+                </ul>
+                <div class="price">
+                    <span class="price-amount">1,50€</span>
+                    <span class="price-period">/Monat</span>
+                </div>
+                <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
+                    <i class="fas fa-shopping-cart"></i> Jetzt bestellen
+                </a>
+            </div>
+
+            <!-- Pro Plan (FEATURED) -->
+            <div class="pricing-card featured">
+                <div class="badge">EMPFOHLEN</div>
+                <div class="plan-name">
+                    <i class="fas fa-bolt" style="color: #fbbf24;"></i>
+                    <span class="plan-ram">PRO</span>
+                </div>
+                <p class="plan-description">Für mittlere Server</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 3 GB RAM</li>
+                    <li><i class="fas fa-check"></i> 25 Spieler Slots</li>
+                    <li><i class="fas fa-check"></i> 25 GB NVMe Speicher</li>
+                    <li><i class="fas fa-check"></i> Premium Support</li>
+                    <li><i class="fas fa-check"></i> Tägliche Backups</li>
+                    <li><i class="fas fa-check"></i> DDoS Schutz</li>
+                </ul>
+                <div class="price">
+                    <span class="price-amount">3,99€</span>
+                    <span class="price-period">/Monat</span>
+                    <span class="price-original">7,99€</span>
+                </div>
+                <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
+                    <i class="fas fa-shopping-cart"></i> Jetzt bestellen
+                </a>
+            </div>
+
+            <!-- Ultra Plan -->
+            <div class="pricing-card">
+                <div class="plan-name">
+                    <i class="fas fa-crown" style="color: #ec4899;"></i>
+                    <span class="plan-ram">ULTRA</span>
+                </div>
+                <p class="plan-description">Für große Communities</p>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> 6 GB RAM</li>
+                    <li><i class="fas fa-check"></i> 50 Spieler Slots</li>
+                    <li><i class="fas fa-check"></i> 50 GB NVMe Speicher</li>
+                    <li><i class="fas fa-check"></i> 24/7 Premium Support</li>
+                    <li><i class="fas fa-check"></i> Stündliche Backups</li>
+                    <li><i class="fas fa-check"></i> Priorität bei Ressourcen</li>
+                    <li><i class="fas fa-check"></i> Modpack Support</li>
+                </ul>
+                <div class="price">
+                    <span class="price-amount">7,99€</span>
+                    <span class="price-period">/Monat</span>
+                    <span class="price-original">14,99€</span>
+                </div>
+                <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
+                    <i class="fas fa-shopping-cart"></i> Jetzt bestellen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Warum Nezzo Host?</h2>
+        <p class="section-subtitle">Professionelles Hosting zum kleinen Preis</p>
+        
+        <div class="features-grid">
+            <div class="feature-box">
+                <i class="fas fa-tachometer-alt"></i>
+                <h3>Blitzschnelle SSDs</h3>
+                <p>NVMe SSD Speicher für maximale Performance und kurze Ladezeiten</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-shield-alt"></i>
+                <h3>DDoS Schutz</h3>
+                <p>Professioneller Schutz vor Angriffen - dein Server bleibt online</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-headset"></i>
+                <h3>Support</h3>
+                <p>Schnelle Hilfe per Discord bei Fragen oder Problemen</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-sync-alt"></i>
+                <h3>Automatische Backups</h3>
+                <p>Deine Welten werden regelmäßig gesichert - nichts geht verloren</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-plug"></i>
+                <h3>Modpacks & Plugins</h3>
+                <p>Installiere deine Lieblings-Mods und Plugins mit einem Klick</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-globe"></i>
+                <h3>99% Uptime</h3>
+                <p>Dein Server ist fast immer online - garantiert!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="support">
+        <p>© 2026 Nezzo Host - Alle Rechte vorbehalten</p>
+        <p style="margin-top: 10px;">
+            Fragen? Join unserem 
+            <a href="https://discord.gg/dein-discord" class="discord-link" target="_blank">
+                <i class="fab fa-discord"></i> Discord Server
+            </a>
+        </p>
+        <p style="margin-top: 20px; font-size: 0.85em; color: #4b5563;">
+            ⚠️ Hinweis: Free-Server haben begrenzte Ressourcen und keine Garantie auf 24/7 Uptime
+        </p>
+    </footer>
+</body>
+</html>
