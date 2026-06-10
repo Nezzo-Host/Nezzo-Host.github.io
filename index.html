@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nezzo Host - Günstiges Minecraft Server Hosting</title>
+    <title>Nezzo Host - Minecraft Server Hosting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,40 +14,87 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f0f0f;
+            background: #0a0a0a;
             color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* Header */
+        /* Orange Theme */
+        :root {
+            --primary: #ff6b00;
+            --primary-dark: #e65100;
+            --primary-light: #ff9100;
+            --accent: #ff3d00;
+        }
+
+        /* Top Bar mit Sprachauswahl */
         .top-bar {
-            background: linear-gradient(90deg, #8b5cf6, #7c3aed);
-            text-align: center;
-            padding: 8px;
-            font-size: 0.9em;
+            background: linear-gradient(90deg, #ff6b00, #ff3d00);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-weight: bold;
         }
 
+        .promo-text {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: white;
+            color: #ff6b00;
+        }
+
+        /* Navigation */
         nav {
-            background: rgba(15, 15, 15, 0.95);
-            padding: 15px 5%;
+            background: rgba(10, 10, 10, 0.98);
+            padding: 20px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 2px solid #8b5cf6;
+            border-bottom: 3px solid #ff6b00;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #8b5cf6;
+            height: 50px;
+            width: auto;
+            border-radius: 10px;
         }
 
-        .logo span {
-            color: #ffffff;
+        .brand {
+            font-size: 2em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b00, #ff9100);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .nav-links {
@@ -59,183 +106,265 @@
         .nav-links a {
             color: #ffffff;
             text-decoration: none;
+            font-weight: 600;
             transition: color 0.3s;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: #8b5cf6;
+            color: #ff6b00;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b00;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .btn-panel {
-            background: #8b5cf6;
-            padding: 10px 25px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #ff6b00, #ff3d00);
+            padding: 12px 30px;
+            border-radius: 25px;
             color: white !important;
             font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
         }
 
-        /* Hero Section */
+        .btn-panel::after {
+            display: none !important;
+        }
+
+        /* Hero Section - Querformat */
         .hero {
-            padding: 80px 5%;
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(255,107,0,0.1) 0%, rgba(255,61,0,0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255,107,0,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
             align-items: center;
-            background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent);
         }
 
-        .hero-content h1 {
-            font-size: 3.5em;
+        .hero-text h1 {
+            font-size: 4em;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
         }
 
-        .hero-content p {
-            font-size: 1.2em;
-            color: #9ca3af;
+        .hero-text h1 span {
+            color: #ff6b00;
+            text-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
+        }
+
+        .hero-text p {
+            font-size: 1.3em;
+            color: #b0b0b0;
             margin-bottom: 30px;
             line-height: 1.6;
         }
 
-        .trustpilot {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        .stars {
-            color: #00b67a;
-        }
-
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        .btn-hero-primary {
+            background: linear-gradient(135deg, #ff6b00, #ff3d00);
             color: white;
-            padding: 15px 35px;
-            border-radius: 10px;
+            padding: 18px 40px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.4);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+        .btn-hero-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.6);
         }
 
-        .btn-secondary {
+        .btn-hero-secondary {
             background: transparent;
             color: white;
-            padding: 15px 35px;
-            border-radius: 10px;
+            padding: 18px 40px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: bold;
-            border: 2px solid #8b5cf6;
+            border: 3px solid #ff6b00;
             transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .btn-secondary:hover {
-            background: #8b5cf6;
+        .btn-hero-secondary:hover {
+            background: #ff6b00;
+            transform: translateY(-5px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ff6b00;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.9em;
         }
 
         .hero-image {
             position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
         .hero-image img {
             width: 100%;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
-            border: 3px solid #8b5cf6;
+            box-shadow: 0 30px 60px rgba(255, 107, 0, 0.3);
+            border: 4px solid #ff6b00;
         }
 
         /* Pricing Section */
         .pricing {
             padding: 100px 5%;
-            background: #0f0f0f;
+            background: #0a0a0a;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff6b00, #ff9100);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .section-subtitle {
-            text-align: center;
-            color: #9ca3af;
-            margin-bottom: 60px;
-            font-size: 1.1em;
+            color: #888;
+            font-size: 1.2em;
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .pricing-card {
-            background: linear-gradient(145deg, #1a1a1a, #151515);
-            border-radius: 20px;
-            padding: 40px 30px;
+            background: linear-gradient(145deg, #151515, #0f0f0f);
+            border-radius: 25px;
+            overflow: hidden;
             border: 2px solid #2a2a2a;
             transition: all 0.3s;
             position: relative;
-            overflow: hidden;
         }
 
         .pricing-card:hover {
-            transform: translateY(-10px);
-            border-color: #8b5cf6;
-            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+            transform: translateY(-15px);
+            border-color: #ff6b00;
+            box-shadow: 0 30px 60px rgba(255, 107, 0, 0.3);
         }
 
         .pricing-card.featured {
-            border-color: #8b5cf6;
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+            border-color: #ff6b00;
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 107, 0, 0.4);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-15px);
         }
 
         .badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-            padding: 5px 15px;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b00, #ff3d00);
+            padding: 8px 20px;
             border-radius: 20px;
-            font-size: 0.8em;
             font-weight: bold;
+            font-size: 0.85em;
+            z-index: 10;
+        }
+
+        .plan-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid #ff6b00;
+        }
+
+        .plan-content {
+            padding: 30px;
+        }
+
+        .plan-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .plan-icon {
+            font-size: 2.5em;
         }
 
         .plan-name {
             font-size: 1.8em;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .plan-ram {
-            color: #8b5cf6;
             font-weight: bold;
-        }
-
-        .plan-description {
-            color: #9ca3af;
-            margin-bottom: 25px;
-            font-size: 0.95em;
         }
 
         .plan-features {
@@ -244,46 +373,46 @@
         }
 
         .plan-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #2a2a2a;
+            padding: 12px 0;
+            border-bottom: 1px solid #222;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            color: #ccc;
         }
 
         .plan-features li i {
-            color: #8b5cf6;
+            color: #ff6b00;
+            width: 20px;
         }
 
-        .price {
-            margin-bottom: 25px;
+        .price-box {
+            background: rgba(255, 107, 0, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px solid #ff6b00;
         }
 
         .price-amount {
-            font-size: 2.5em;
+            font-size: 3em;
             font-weight: bold;
-            color: #8b5cf6;
+            color: #ff6b00;
         }
 
         .price-period {
-            color: #9ca3af;
+            color: #888;
             font-size: 0.9em;
-        }
-
-        .price-original {
-            text-decoration: line-through;
-            color: #6b7280;
-            font-size: 0.9em;
-            margin-left: 10px;
         }
 
         .btn-order {
             width: 100%;
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            background: linear-gradient(135deg, #ff6b00, #ff3d00);
             color: white;
-            padding: 15px;
+            padding: 18px;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
             font-size: 1.1em;
             font-weight: bold;
             cursor: pointer;
@@ -294,18 +423,18 @@
         }
 
         .btn-order:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.5);
         }
 
         .btn-free {
             background: linear-gradient(135deg, #10b981, #059669);
         }
 
-        /* Features Section */
+        /* Features */
         .features {
             padding: 100px 5%;
-            background: linear-gradient(180deg, #0f0f0f, #1a1a2e);
+            background: linear-gradient(180deg, #0a0a0a, #1a0f05);
         }
 
         .features-grid {
@@ -317,269 +446,428 @@
         }
 
         .feature-box {
-            background: rgba(139, 92, 246, 0.05);
+            background: rgba(255, 107, 0, 0.05);
             padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 107, 0, 0.2);
             text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            border-color: #ff6b00;
+            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.2);
         }
 
         .feature-box i {
-            font-size: 3em;
-            color: #8b5cf6;
+            font-size: 3.5em;
+            color: #ff6b00;
             margin-bottom: 20px;
         }
 
         .feature-box h3 {
             font-size: 1.5em;
             margin-bottom: 15px;
+            color: #ff9100;
         }
 
         .feature-box p {
-            color: #9ca3af;
+            color: #999;
             line-height: 1.6;
         }
 
         /* Footer */
         footer {
-            background: #0a0a0a;
+            background: #050505;
             padding: 40px 5%;
             text-align: center;
-            border-top: 2px solid #8b5cf6;
+            border-top: 3px solid #ff6b00;
         }
 
-        footer p {
-            color: #6b7280;
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .discord-link {
-            color: #8b5cf6;
+        .footer-logo {
+            font-size: 2em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b00, #ff9100);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #888;
             text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b00;
+        }
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #5865F2;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s;
+        }
+
+        .discord-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4);
+        }
+
+        .copyright {
+            color: #666;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+        }
+
+        .developer {
+            color: #ff6b00;
             font-weight: bold;
         }
 
         /* Responsive */
         @media (max-width: 968px) {
-            .hero {
+            .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .hero-content h1 {
+            .hero-text h1 {
                 font-size: 2.5em;
             }
 
             .hero-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero-stats {
                 justify-content: center;
             }
 
             .nav-links {
                 display: none;
             }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-15px);
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Top Bar -->
+    <!-- Top Bar mit Sprachauswahl -->
     <div class="top-bar">
-        🎉 50% Rabatt auf den ersten Monat mit Code: NEZZO50
+        <div class="promo-text">
+            <i class="fas fa-gift"></i>
+            <span>50% Rabatt mit Code: NEZZO50</span>
+        </div>
+        <div class="language-selector">
+            <button class="lang-btn active">🇩 DE</button>
+            <button class="lang-btn">🇬🇧 EN</button>
+            <button class="lang-btn">🇫🇷 FR</button>
+        </div>
     </div>
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">⚡ NEZZO<span>HOST</span></div>
+        <div class="logo-container">
+            <img src="logo.png" alt="Nezzo Host Logo" class="logo">
+            <div class="brand">NEZZO HOST</div>
+        </div>
         <div class="nav-links">
+            <a href="#home">Home</a>
             <a href="#preise">Preise</a>
             <a href="#features">Features</a>
             <a href="#support">Support</a>
             <a href="http://deine-panel-ip" class="btn-panel" target="_blank">
-                <i class="fas fa-external-link-alt"></i> Panel
+                <i class="fas fa-external-link-alt"></i> Panel Login
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="hero-content">
-            <div class="trustpilot">
-                <span class="stars">★★★★★</span>
-                <span>Excellent auf Trustpilot</span>
+            <div class="hero-text">
+                <h1>Minecraft Server <span>Hosting</span></h1>
+                <p>Erlebe Gaming auf einem neuen Level! Blitzschnelle Server, 
+                   24/7 Support und unschlagbare Preise. Starte jetzt durch!</p>
+                <div class="hero-buttons">
+                    <a href="#preise" class="btn-hero-primary">
+                        <i class="fas fa-rocket"></i> Jetzt starten
+                    </a>
+                    <a href="https://discord.gg/wCHHeaT9Zr" class="btn-hero-secondary" target="_blank">
+                        <i class="fab fa-discord"></i> Discord
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Kunden</div>
+                    </div>
+                </div>
             </div>
-            <h1>Minecraft Server Hosting</h1>
-            <p>Schnelle, anpassbare Server, die in wenigen Minuten einsatzbereit sind. 
-               Starte dein Abenteuer noch heute - ab 0€!</p>
-            <div class="hero-buttons">
-                <a href="#preise" class="btn-primary">
-                    <i class="fas fa-rocket"></i> Server mieten
-                </a>
-                <a href="https://discord.gg/dein-discord" class="btn-secondary" target="_blank">
-                    <i class="fab fa-discord"></i> Discord
-                </a>
+            <div class="hero-image">
+                <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg" 
+                     alt="Minecraft Server">
             </div>
-        </div>
-        <div class="hero-image">
-            <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg" 
-                 alt="Minecraft Server">
         </div>
     </section>
 
     <!-- Pricing Section -->
     <section class="pricing" id="preise">
-        <h2 class="section-title">Wähle deinen Plan</h2>
-        <p class="section-subtitle">Alle Preise monatlich • Keine Einrichtungsgebühr • Jederzeit kündbar</p>
+        <div class="section-header">
+            <h2 class="section-title">Wähle deinen Server</h2>
+            <p class="section-subtitle">Flexible Pläne für jeden Bedarf • Jederzeit kündbar</p>
+        </div>
         
         <div class="pricing-grid">
             <!-- FREE Plan -->
             <div class="pricing-card">
-                <div class="plan-name">
-                    <i class="fas fa-gift" style="color: #10b981;"></i>
-                    <span class="plan-ram">FREE</span>
+                <img src="https://images.unsplash.com/photo-1607301049751-2c589a07821a?w=400" 
+                     alt="Free Plan" class="plan-image">
+                <div class="plan-content">
+                    <div class="plan-header">
+                        <span class="plan-icon">🎁</span>
+                        <div class="plan-name">FREE</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 1 GB RAM</li>
+                        <li><i class="fas fa-check"></i> 5 Spieler Slots</li>
+                        <li><i class="fas fa-check"></i> 5 GB SSD Speicher</li>
+                        <li><i class="fas fa-check"></i> Standard Support</li>
+                        <li><i class="fas fa-check"></i> Vanilla & Plugins</li>
+                    </ul>
+                    <div class="price-box">
+                        <div class="price-amount">0€</div>
+                        <div class="price-period">für immer kostenlos</div>
+                    </div>
+                    <a href="http://deine-panel-ip/register" class="btn-order btn-free" target="_blank">
+                        <i class="fas fa-download"></i> Kostenlos testen
+                    </a>
                 </div>
-                <p class="plan-description">Perfekt zum Testen</p>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 1 GB RAM</li>
-                    <li><i class="fas fa-check"></i> 5 Spieler Slots</li>
-                    <li><i class="fas fa-check"></i> 5 GB SSD Speicher</li>
-                    <li><i class="fas fa-check"></i> Standard Support</li>
-                    <li><i class="fas fa-check"></i> 99% Uptime</li>
-                </ul>
-                <div class="price">
-                    <span class="price-amount">0,00€</span>
-                    <span class="price-period">/Monat</span>
-                </div>
-                <a href="http://deine-panel-ip/register" class="btn-order btn-free" target="_blank">
-                    <i class="fas fa-download"></i> Kostenlos starten
-                </a>
             </div>
 
             <!-- Starter Plan -->
             <div class="pricing-card">
-                <div class="plan-name">
-                    <i class="fas fa-seedling" style="color: #8b5cf6;"></i>
-                    <span class="plan-ram">STARTER</span>
+                <img src="https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=400" 
+                     alt="Starter Plan" class="plan-image">
+                <div class="plan-content">
+                    <div class="plan-header">
+                        <span class="plan-icon">🌱</span>
+                        <div class="plan-name">STARTER</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 1,5 GB RAM</li>
+                        <li><i class="fas fa-check"></i> 10 Spieler Slots</li>
+                        <li><i class="fas fa-check"></i> 10 GB SSD Speicher</li>
+                        <li><i class="fas fa-check"></i> Priority Support</li>
+                        <li><i class="fas fa-check"></i> Automatische Backups</li>
+                        <li><i class="fas fa-check"></i> Modpack Support</li>
+                    </ul>
+                    <div class="price-box">
+                        <div class="price-amount">1,50€</div>
+                        <div class="price-period">pro Monat</div>
+                    </div>
+                    <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
+                        <i class="fas fa-shopping-cart"></i> Jetzt bestellen
+                    </a>
                 </div>
-                <p class="plan-description">Für kleine Gruppen</p>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 1,5 GB RAM</li>
-                    <li><i class="fas fa-check"></i> 10 Spieler Slots</li>
-                    <li><i class="fas fa-check"></i> 10 GB SSD Speicher</li>
-                    <li><i class="fas fa-check"></i> Priority Support</li>
-                    <li><i class="fas fa-check"></i> Automatische Backups</li>
-                </ul>
-                <div class="price">
-                    <span class="price-amount">1,50€</span>
-                    <span class="price-period">/Monat</span>
-                </div>
-                <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
-                    <i class="fas fa-shopping-cart"></i> Jetzt bestellen
-                </a>
             </div>
 
             <!-- Pro Plan (FEATURED) -->
             <div class="pricing-card featured">
-                <div class="badge">EMPFOHLEN</div>
-                <div class="plan-name">
-                    <i class="fas fa-bolt" style="color: #fbbf24;"></i>
-                    <span class="plan-ram">PRO</span>
+                <div class="badge"> BELIEBT</div>
+                <img src="https://images.unsplash.com/photo-1612287230217-969b698cb8d1?w=400" 
+                     alt="Pro Plan" class="plan-image">
+                <div class="plan-content">
+                    <div class="plan-header">
+                        <span class="plan-icon">⚡</span>
+                        <div class="plan-name">PRO</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 3 GB RAM</li>
+                        <li><i class="fas fa-check"></i> 25 Spieler Slots</li>
+                        <li><i class="fas fa-check"></i> 25 GB NVMe Speicher</li>
+                        <li><i class="fas fa-check"></i> Premium Support</li>
+                        <li><i class="fas fa-check"></i> Tägliche Backups</li>
+                        <li><i class="fas fa-check"></i> DDoS Schutz</li>
+                        <li><i class="fas fa-check"></i> Subdomain inklusive</li>
+                    </ul>
+                    <div class="price-box">
+                        <div class="price-amount">3,99€</div>
+                        <div class="price-period">pro Monat</div>
+                    </div>
+                    <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
+                        <i class="fas fa-fire"></i> Jetzt bestellen
+                    </a>
                 </div>
-                <p class="plan-description">Für mittlere Server</p>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 3 GB RAM</li>
-                    <li><i class="fas fa-check"></i> 25 Spieler Slots</li>
-                    <li><i class="fas fa-check"></i> 25 GB NVMe Speicher</li>
-                    <li><i class="fas fa-check"></i> Premium Support</li>
-                    <li><i class="fas fa-check"></i> Tägliche Backups</li>
-                    <li><i class="fas fa-check"></i> DDoS Schutz</li>
-                </ul>
-                <div class="price">
-                    <span class="price-amount">3,99€</span>
-                    <span class="price-period">/Monat</span>
-                    <span class="price-original">7,99€</span>
-                </div>
-                <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
-                    <i class="fas fa-shopping-cart"></i> Jetzt bestellen
-                </a>
             </div>
 
             <!-- Ultra Plan -->
             <div class="pricing-card">
-                <div class="plan-name">
-                    <i class="fas fa-crown" style="color: #ec4899;"></i>
-                    <span class="plan-ram">ULTRA</span>
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400" 
+                     alt="Ultra Plan" class="plan-image">
+                <div class="plan-content">
+                    <div class="plan-header">
+                        <span class="plan-icon">👑</span>
+                        <div class="plan-name">ULTRA</div>
+                    </div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check"></i> 6 GB RAM</li>
+                        <li><i class="fas fa-check"></i> 50 Spieler Slots</li>
+                        <li><i class="fas fa-check"></i> 50 GB NVMe Speicher</li>
+                        <li><i class="fas fa-check"></i> 24/7 Premium Support</li>
+                        <li><i class="fas fa-check"></i> Stündliche Backups</li>
+                        <li><i class="fas fa-check"></i> Priorität bei Ressourcen</li>
+                        <li><i class="fas fa-check"></i> Eigene IP Adresse</li>
+                        <li><i class="fas fa-check"></i> Modpacks & Plugins</li>
+                    </ul>
+                    <div class="price-box">
+                        <div class="price-amount">7,99€</div>
+                        <div class="price-period">pro Monat</div>
+                    </div>
+                    <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
+                        <i class="fas fa-crown"></i> Jetzt bestellen
+                    </a>
                 </div>
-                <p class="plan-description">Für große Communities</p>
-                <ul class="plan-features">
-                    <li><i class="fas fa-check"></i> 6 GB RAM</li>
-                    <li><i class="fas fa-check"></i> 50 Spieler Slots</li>
-                    <li><i class="fas fa-check"></i> 50 GB NVMe Speicher</li>
-                    <li><i class="fas fa-check"></i> 24/7 Premium Support</li>
-                    <li><i class="fas fa-check"></i> Stündliche Backups</li>
-                    <li><i class="fas fa-check"></i> Priorität bei Ressourcen</li>
-                    <li><i class="fas fa-check"></i> Modpack Support</li>
-                </ul>
-                <div class="price">
-                    <span class="price-amount">7,99€</span>
-                    <span class="price-period">/Monat</span>
-                    <span class="price-original">14,99€</span>
-                </div>
-                <a href="http://deine-panel-ip/register" class="btn-order" target="_blank">
-                    <i class="fas fa-shopping-cart"></i> Jetzt bestellen
-                </a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2 class="section-title">Warum Nezzo Host?</h2>
-        <p class="section-subtitle">Professionelles Hosting zum kleinen Preis</p>
+        <div class="section-header">
+            <h2 class="section-title">Warum Nezzo Host?</h2>
+            <p class="section-subtitle">Professionelles Hosting mit Herz</p>
+        </div>
         
         <div class="features-grid">
             <div class="feature-box">
-                <i class="fas fa-tachometer-alt"></i>
-                <h3>Blitzschnelle SSDs</h3>
-                <p>NVMe SSD Speicher für maximale Performance und kurze Ladezeiten</p>
+                <i class="fas fa-bolt"></i>
+                <h3>Blitzschnell</h3>
+                <p>NVMe SSD Speicher und moderne Hardware für maximale Performance</p>
             </div>
             <div class="feature-box">
                 <i class="fas fa-shield-alt"></i>
                 <h3>DDoS Schutz</h3>
-                <p>Professioneller Schutz vor Angriffen - dein Server bleibt online</p>
+                <p>Professioneller Schutz vor Angriffen - dein Server bleibt immer online</p>
             </div>
             <div class="feature-box">
                 <i class="fas fa-headset"></i>
                 <h3>Support</h3>
-                <p>Schnelle Hilfe per Discord bei Fragen oder Problemen</p>
+                <p>Schnelle Hilfe per Discord - wir lassen dich nicht allein!</p>
             </div>
             <div class="feature-box">
-                <i class="fas fa-sync-alt"></i>
-                <h3>Automatische Backups</h3>
-                <p>Deine Welten werden regelmäßig gesichert - nichts geht verloren</p>
+                <i class="fas fa-database"></i>
+                <h3>Backups</h3>
+                <p>Automatische Sicherungen - deine Welten sind immer geschützt</p>
             </div>
             <div class="feature-box">
                 <i class="fas fa-plug"></i>
-                <h3>Modpacks & Plugins</h3>
-                <p>Installiere deine Lieblings-Mods und Plugins mit einem Klick</p>
+                <h3>Modpacks</h3>
+                <p>Installiere deine Lieblings-Mods mit nur einem Klick</p>
             </div>
             <div class="feature-box">
-                <i class="fas fa-globe"></i>
-                <h3>99% Uptime</h3>
-                <p>Dein Server ist fast immer online - garantiert!</p>
+                <i class="fas fa-globe-europe"></i>
+                <h3>Standort DE</h3>
+                <p>Server in Deutschland für minimale Latenz und beste Verbindung</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer id="support">
-        <p>© 2026 Nezzo Host - Alle Rechte vorbehalten</p>
-        <p style="margin-top: 10px;">
-            Fragen? Join unserem 
-            <a href="https://discord.gg/dein-discord" class="discord-link" target="_blank">
-                <i class="fab fa-discord"></i> Discord Server
+        <div class="footer-content">
+            <div class="footer-logo">⚡ NEZZO HOST</div>
+            <p style="color: #888; margin-bottom: 20px;">Dein zuverlässiger Minecraft Server Host</p>
+            
+            <a href="https://discord.gg/wCHHeaT9Zr" class="discord-btn" target="_blank">
+                <i class="fab fa-discord"></i>
+                Join unserem Discord
             </a>
-        </p>
-        <p style="margin-top: 20px; font-size: 0.85em; color: #4b5563;">
-            ⚠️ Hinweis: Free-Server haben begrenzte Ressourcen und keine Garantie auf 24/7 Uptime
-        </p>
+            
+            <div class="footer-links">
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+                <a href="#">AGB</a>
+                <a href="http://deine-panel-ip" target="_blank">Panel</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Nezzo Host - Alle Rechte vorbehalten</p>
+                <p style="margin-top: 10px;">
+                    Entwickelt von <span class="developer">LobiGmbH</span>
+                </p>
+                <p style="margin-top: 5px; font-size: 0.85em;">
+                    <a href="https://lobigmbh.github.io" target="_blank" 
+                       style="color: #ff6b00; text-decoration: none;">
+                        LobiGmbH.github.io
+                    </a>
+                </p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Language Selector
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Hier kannst du später die Sprachumschaltung implementieren
+            });
+        });
+    </script>
 </body>
 </html>
