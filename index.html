@@ -27,20 +27,14 @@
             --accent: #ff3d00;
         }
 
-        /* Top Bar mit Sprachauswahl */
+        /* Top Bar mit Sprachauswahl - OHNE RABATT */
         .top-bar {
             background: linear-gradient(90deg, #ff6b00, #ff3d00);
             padding: 10px 5%;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             font-weight: bold;
-        }
-
-        .promo-text {
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         .language-selector {
@@ -143,7 +137,7 @@
             display: none !important;
         }
 
-        /* Hero Section - Querformat */
+        /* Hero Section */
         .hero {
             padding: 60px 5%;
             background: linear-gradient(135deg, rgba(255,107,0,0.1) 0%, rgba(255,61,0,0.05) 100%);
@@ -297,7 +291,7 @@
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             max-width: 1400px;
             margin: 0 auto;
@@ -342,9 +336,10 @@
 
         .plan-image {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
             border-bottom: 3px solid #ff6b00;
+            background: #1a1a1a;
         }
 
         .plan-content {
@@ -583,16 +578,12 @@
     </style>
 </head>
 <body>
-    <!-- Top Bar mit Sprachauswahl -->
+    <!-- Top Bar NUR mit Sprachauswahl -->
     <div class="top-bar">
-        <div class="promo-text">
-            <i class="fas fa-gift"></i>
-            <span>50% Rabatt mit Code: NEZZO50</span>
-        </div>
         <div class="language-selector">
             <button class="lang-btn active">🇩 DE</button>
             <button class="lang-btn">🇬🇧 EN</button>
-            <button class="lang-btn">🇫🇷 FR</button>
+            <button class="lang-btn">🇫 FR</button>
         </div>
     </div>
 
@@ -658,10 +649,10 @@
         </div>
         
         <div class="pricing-grid">
-            <!-- FREE Plan -->
+            <!-- FREE Plan - CREEPER -->
             <div class="pricing-card">
-                <img src="https://images.unsplash.com/photo-1607301049751-2c589a07821a?w=400" 
-                     alt="Free Plan" class="plan-image">
+                <img src="https://api.mineatar.io/face/creeper?scale=8" 
+                     alt="Free Plan - Creeper" class="plan-image">
                 <div class="plan-content">
                     <div class="plan-header">
                         <span class="plan-icon">🎁</span>
@@ -684,10 +675,10 @@
                 </div>
             </div>
 
-            <!-- Starter Plan -->
+            <!-- Starter Plan - ZOMBIE -->
             <div class="pricing-card">
-                <img src="https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=400" 
-                     alt="Starter Plan" class="plan-image">
+                <img src="https://api.mineatar.io/face/zombie?scale=8" 
+                     alt="Starter Plan - Zombie" class="plan-image">
                 <div class="plan-content">
                     <div class="plan-header">
                         <span class="plan-icon">🌱</span>
@@ -711,11 +702,11 @@
                 </div>
             </div>
 
-            <!-- Pro Plan (FEATURED) -->
+            <!-- Pro Plan (FEATURED) - SKELETON -->
             <div class="pricing-card featured">
                 <div class="badge"> BELIEBT</div>
-                <img src="https://images.unsplash.com/photo-1612287230217-969b698cb8d1?w=400" 
-                     alt="Pro Plan" class="plan-image">
+                <img src="https://api.mineatar.io/face/skeleton?scale=8" 
+                     alt="Pro Plan - Skeleton" class="plan-image">
                 <div class="plan-content">
                     <div class="plan-header">
                         <span class="plan-icon">⚡</span>
@@ -740,10 +731,10 @@
                 </div>
             </div>
 
-            <!-- Ultra Plan -->
+            <!-- Ultra Plan - ENDERMAN -->
             <div class="pricing-card">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400" 
-                     alt="Ultra Plan" class="plan-image">
+                <img src="https://api.mineatar.io/face/enderman?scale=8" 
+                     alt="Ultra Plan - Enderman" class="plan-image">
                 <div class="plan-content">
                     <div class="plan-header">
                         <span class="plan-icon">👑</span>
@@ -865,7 +856,6 @@
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                // Hier kannst du später die Sprachumschaltung implementieren
             });
         });
     </script>
